@@ -20,5 +20,5 @@ export default () => {
   messaging.usePublicVapidKey(
     "BOkwvzmAszF6PgV2ZbUVaKN2E6R7xQW0rA__Rta0q1eliYCCs0nttlCbtlQyRpVnCaRObd-QUKvMdWkZ3gH3lIg;"
   );
-  messaging.onMessage(console.log);
+  return firebase.firestore();
 };

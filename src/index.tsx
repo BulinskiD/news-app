@@ -3,14 +3,23 @@ import ReactDOM from "react-dom";
 import "./index.css";
 import App from "./App";
 import * as serviceWorker from "./serviceWorker";
-import firebaseConfig from "./firebaseConfig";
+import { configureStore } from "@reduxjs/toolkit";
+import reducer from "./store";
+import { Provider } from "react-redux";
+import firebaseMiddleware from "./store/firebase/firebaseMiddleware";
+import thunk from "redux-thunk";
 
-firebaseConfig();
+const store = configureStore({
+  reducer,
+  middleware: [thunk, firebaseMiddleware],
+});
 
 ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
+  <Provider store={store}>
+    <React.StrictMode>
+      <App />
+    </React.StrictMode>
+  </Provider>,
   document.getElementById("root")
 );
 
